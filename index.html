@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,6 +11,18 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script>
+      // It's best to inline this in 'head' to avoid FOUC(Flash of unstyled content) when changing pages or themes
+      if (
+        !localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
     <title>Fylo</title>
   </head>
   <body class="font-opensans dark:bg-darkBlue dark:text-white">
@@ -61,5 +73,7 @@
         </button>
       </div>
     </header>
+
+    <script src="js/script.js"></script>
   </body>
 </html>
